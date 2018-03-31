@@ -7,8 +7,8 @@ function globalLogging() {
 
   log.addAppender(ajaxAppender);
 
-  window.onerror = function (errorMsg, url, lineNumber) {
-    log.fatal(errorMsg + " in " + url + ", line " + lineNumber);
+  window.onerror = function (errorMsg, url, lineNumber, columnNumber) {
+    log.fatal(errorMsg + ", line: " + lineNumber + ", column: ");
   };
 }
 
