@@ -1,6 +1,7 @@
 package com.github.lgdd.log4javascript.demo;
 
 import com.github.lgdd.log4javascript.demo.model.Log4Js;
+import com.github.lgdd.log4javascript.demo.wrapper.JsLogWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,11 +22,9 @@ public class Application {
     @RestController
     public class DummyController {
 
-        @PostMapping("/log/javascript/error")
+        @PostMapping("/log/javascript")
         public void javascriptLogging(@RequestBody List<Log4Js> log4jsList) {
-            log4jsList.forEach(log4js ->
-                    log.error("[{}] -- {} : {}", log4js.getLogger(), log4js.getLevel(), log4js.getMessage())
-            );
+            JsLogWrapper.log(log, log4jsList);
         }
 
     }
